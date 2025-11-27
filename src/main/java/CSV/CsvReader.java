@@ -18,7 +18,7 @@ import java.util.List;
 public class CsvReader {
     private static volatile CsvReader instance;
 
-    public CsvReader() {
+    private CsvReader() {
     }
     
 
@@ -33,13 +33,7 @@ public class CsvReader {
         return instance;
     }
     
-    public int[][] readSudokuBoard(String filePath) throws IOException, CsvValidationException {
-        List<List<String>> records = readCsvRecords(filePath);
-        DimensionsValidator.validateDimensions(records);
-        return Converter.convertToIntBoard(records);
-    }
-    
-    private List<List<String>> readCsvRecords(String filePath) throws IOException, CsvValidationException {
+    public List<List<String>> readCsvRecords(String filePath) throws IOException, CsvValidationException {
         List<List<String>> records = new ArrayList<>();
         
         try (CSVReader csvReader = new CSVReader(new FileReader(filePath))) {

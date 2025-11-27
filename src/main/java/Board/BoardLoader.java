@@ -4,7 +4,7 @@
  */
 package Board;
 
-import CSV.CsvReader;
+import CSV.ToBoard;
 import com.opencsv.exceptions.CsvValidationException;
 import java.io.IOException;
 
@@ -13,14 +13,15 @@ import java.io.IOException;
  * @author pola-nasser13
  */
 public class BoardLoader {
-        private final CsvReader csvReader;
-    public BoardLoader() {
-        this.csvReader = CsvReader.getInstance();
-    }
+    private ToBoard ToBoard;
     
+    public BoardLoader() {
+        this.ToBoard = new ToBoard();
+    }
+
     public SudokuBoard load(String filePath) throws IOException, CsvValidationException {
-        int[][] grid = csvReader.readSudokuBoard(filePath);
+        int[][] grid = ToBoard.readSudokuBoard(filePath);
         return new SudokuBoard(grid);
     }
-    
+
 }
