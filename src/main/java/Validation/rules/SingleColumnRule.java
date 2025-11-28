@@ -12,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author Ibrahim
  */
-public class GeneralRule extends BaseRule {
+public class SingleColumnRule extends BaseRule {
     
     
     @Override
