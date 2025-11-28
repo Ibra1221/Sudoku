@@ -6,6 +6,7 @@ package Validation.factory;
 
 import Validation.rules.ValidationRule;
 
+
 /**
  *
  * @author pola-nasser13
@@ -14,4 +15,5 @@ public interface RuleMaker {
     ValidationRule makeRowRule();
     ValidationRule makeColumnRule();
     ValidationRule makeBoxRule();
+    ValidationRule makeGeneralRule();
 }

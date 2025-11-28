@@ -11,11 +11,17 @@ import Board.SudokuBoard;
  * @author Ibrahim
  */
 public class SudokuWorker extends BaseWorker{
-    public SudokuWorker(int index, SudokuBoard board){
-        super(index, board);  
+    
+    private WorkerType type;
+    
+    public SudokuWorker(int index, SudokuBoard board, WorkerType type){
+        super(index, board); 
+        this.type = type;
     }
     @Override
     protected CheckResult check(){
+    
+    }
   
 }
 }

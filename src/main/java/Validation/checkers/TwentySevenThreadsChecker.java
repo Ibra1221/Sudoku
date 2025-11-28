@@ -7,6 +7,8 @@ package Validation.checkers;
 import Board.SudokuBoard;
 import Validation.CheckResult;
 import Validation.factory.RuleMaker;
+import Validation.workers.SudokuWorker;
+import Validation.workers.WorkerType;
 import java.util.ArrayList;
 
 /**
@@ -15,7 +17,7 @@ import java.util.ArrayList;
  */
 public class TwentySevenThreadsChecker implements SudokuChecker {
     private final RuleMaker maker;
-    private ArrayList<Thread> workers;
+    private ArrayList<SudokuWorker> workers;
     
     public TwentySevenThreadsChecker(RuleMaker maker){
         this.maker = maker;
@@ -24,6 +26,17 @@ public class TwentySevenThreadsChecker implements SudokuChecker {
     @Override 
     public CheckResult validate(SudokuBoard board){
         for(int i = 0; i<9; i++){
+           workers.add(new SudokuWorker(i, board, WorkerType.ROW_ONE));
+           
+        }
+        
+        for(int i = 9; i<18; i++){
+           workers.add(new SudokuWorker(i, board, WorkerType.COLUMN_ONE));
+           
+        }
+        
+        for(int i = 0; i<9; i++){
+           workers.add(new SudokuWorker(i, board, WorkerType.BOX_ONE));
            
         }
     }

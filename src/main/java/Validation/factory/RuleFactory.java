@@ -9,6 +9,7 @@ import Validation.factory.RuleMaker;
 import Validation.rules.ColumnRule;
 import Validation.rules.RowRule;
 import Validation.rules.BoxRule;
+import Validation.rules.GeneralRule;
 
 /**
  *
@@ -29,5 +30,10 @@ public class RuleFactory implements RuleMaker {
     @Override
     public ValidationRule makeBoxRule() {
         return new BoxRule();
+    }
+    
+    @Override
+    public ValidationRule makeGeneralRule() {
+        return new GeneralRule();
     }
 }
