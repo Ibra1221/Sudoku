@@ -15,5 +15,7 @@ public interface RuleMaker {
     ValidationRule makeRowRule();
     ValidationRule makeColumnRule();
     ValidationRule makeBoxRule();
-    ValidationRule makeGeneralRule();
+    ValidationRule makeSingleBoxRule(int index);
+    ValidationRule makeSingleColumnRule(int index);
+    ValidationRule makeSingleRowRule(int index);
 }

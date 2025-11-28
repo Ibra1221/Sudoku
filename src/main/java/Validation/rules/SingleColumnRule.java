@@ -12,18 +12,20 @@ import java.util.ArrayList;
  *
  * @author Ibrahim
  */
-public class SingleColumnRule extends BaseRule {
+public class SingleColumnRule extends ConcurrentBaseRule {
     
+    
+     public SingleColumnRule(int index){
+        super(index);
+    }
     
     @Override
     public ArrayList<String> check(SudokuBoard board) {
         ArrayList<String> problems = new ArrayList<>();
-        
-        for (int i = 0; i < 9; i++) {
-            int[] col = board.getColumn(i);
-            scanDuplicates(col, i + 1, problems, CheckType.COL);
-        }
-        
+            int index = super.getIndex();
+            int[] column = board.getColumn(index);
+            scanDuplicates(column, index + 1, problems, CheckType.COL);
         return problems;
     }
+
 }

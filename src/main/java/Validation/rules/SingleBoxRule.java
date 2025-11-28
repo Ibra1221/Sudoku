@@ -22,8 +22,8 @@ public class SingleBoxRule extends ConcurrentBaseRule {
     public ArrayList<String> check(SudokuBoard board) {
         ArrayList<String> problems = new ArrayList<>();
             int index = super.getIndex();
-            int[] col = board.getColumn(index);
-            scanDuplicates(col, index + 1, problems, CheckType.COL);
+            int[] box = board.getBox(index);
+            scanDuplicates(box, index + 1, problems, CheckType.BOX);
         return problems;
     }
 }

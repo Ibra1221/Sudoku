@@ -9,7 +9,10 @@ import Validation.factory.RuleMaker;
 import Validation.rules.ColumnRule;
 import Validation.rules.RowRule;
 import Validation.rules.BoxRule;
-import Validation.rules.GeneralRule;
+import Validation.rules.SingleBoxRule;
+import Validation.rules.SingleColumnRule;
+import Validation.rules.SingleRowRule;
+
 
 /**
  *
@@ -33,7 +36,18 @@ public class RuleFactory implements RuleMaker {
     }
     
     @Override
-    public ValidationRule makeGeneralRule() {
-        return new GeneralRule();
+    public ValidationRule makeSingleBoxRule(int index) {
+        return new SingleBoxRule(index);
     }
+    
+    @Override
+    public ValidationRule makeSingleColumnRule(int index) {
+        return new SingleColumnRule(index);
+    }
+ 
+    @Override
+    public ValidationRule makeSingleRowRule(int index) {
+        return new SingleRowRule(index);
+    }
+    
 }

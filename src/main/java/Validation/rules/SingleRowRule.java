@@ -4,10 +4,25 @@
  */
 package Validation.rules;
 
+import Board.SudokuBoard;
+import Validation.CheckType;
+import java.util.ArrayList;
+
 /**
  *
  * @author Ibrahim
  */
-public class SingleRowRule {
+public class SingleRowRule extends ConcurrentBaseRule {
+    public SingleRowRule(int index){
+        super(index);
+    }
     
+    @Override
+    public ArrayList<String> check(SudokuBoard board) {
+        ArrayList<String> problems = new ArrayList<>();
+            int index = super.getIndex();
+            int[] row = board.getRow(index);
+            scanDuplicates(row, index + 1, problems, CheckType.ROW);
+        return problems;
+    }
 }

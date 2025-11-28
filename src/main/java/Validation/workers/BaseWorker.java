@@ -5,26 +5,32 @@
 package Validation.workers;
 
 import Board.SudokuBoard;
-import Validation.CheckResult;
+import Validation.rules.ValidationRule;
+import java.util.ArrayList;
 
 /**
  *
  * @author Ibrahim
  */
 public abstract class BaseWorker extends Thread{
-    protected int index;
-    protected SudokuBoard board;
-    protected CheckResult result;
     
-    protected BaseWorker(int index, SudokuBoard board){
-        this.index = index;
+    protected SudokuBoard board;
+    protected ArrayList<String> error;
+    protected ValidationRule rule;
+    
+    protected BaseWorker( SudokuBoard board,  ValidationRule rule){
         this.board = board;
+        this.rule = rule;
     }
     
     @Override
     public void run(){
-        result = check();
+        check();
     }
     
-    protected abstract CheckResult check();
+    public ArrayList<String> getError(){
+    return this.error;
+    }
+    
+    protected abstract void check();
 }

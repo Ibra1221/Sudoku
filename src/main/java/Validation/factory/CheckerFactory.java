@@ -6,6 +6,7 @@ package Validation.factory;
 
 import Validation.checkers.SudokuChecker;
 import Validation.checkers.SequentialChecker;
+import Validation.checkers.TwentySevenThreadsChecker;
 /**
  *
  * @author pola-nasser13
@@ -19,7 +20,8 @@ public class CheckerFactory {
             case 0:
                 return new SequentialChecker(maker);
 //            case 3:
-//            case 27:
+            case 27:
+                return new TwentySevenThreadsChecker(maker);
             default:
                 throw new IllegalArgumentException("Invalid mode: " + mode + ". Use 0, 3, or 27.");
         }
