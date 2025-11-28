@@ -21,7 +21,7 @@ public class ColumnRule extends BaseRule {
         
         for (int i = 0; i < 9; i++) {
             int[] col = board.getColumn(i);
-            scanDuplicates(col, i + 1, problems, CheckType.COLUMN);
+            scanDuplicates(col, i + 1, problems, CheckType.COL);
         }
         
         return problems;

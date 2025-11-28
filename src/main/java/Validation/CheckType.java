@@ -9,5 +9,5 @@ package Validation;
  * @author pola-nasser13
  */
 public enum CheckType {
-    ROW, COLUMN, BOX
+    ROW, COL, BOX
 }
