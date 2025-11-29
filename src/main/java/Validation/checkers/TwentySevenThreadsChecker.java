@@ -51,6 +51,7 @@ public class TwentySevenThreadsChecker implements SudokuChecker {
             }
             catch (InterruptedException e){
                 System.out.println("An interrupted exception has occurred");
+
                 return CheckResult.failure(new ArrayList<>());
             }
         }

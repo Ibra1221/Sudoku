@@ -35,5 +35,6 @@ public class SudokuSolutionVerifier {
         System.out.println(result3);
         long endTime3 = System.currentTimeMillis();
         System.out.println("Time difference in mode 3:" + (endTime3 - startTime3));
+
     }
 }

@@ -20,8 +20,10 @@ public class CheckerFactory {
         switch (mode) {
             case 0:
                 return new SequentialChecker(maker);
+
             case 3:
                 return new Mode3(maker);
+
             case 27:
                 return new TwentySevenThreadsChecker(maker);
             default:
