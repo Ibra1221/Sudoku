@@ -5,6 +5,8 @@
 package Validation.workers;
 
 import Board.SudokuBoard;
+import Validation.rules.ValidationRule;
+import java.util.ArrayList;
 
 /**
  *
@@ -12,16 +14,17 @@ import Board.SudokuBoard;
  */
 public class SudokuWorker extends BaseWorker{
     
-    private WorkerType type;
     
-    public SudokuWorker(int index, SudokuBoard board, WorkerType type){
-        super(index, board); 
-        this.type = type;
+    
+    public SudokuWorker( SudokuBoard board, ValidationRule rule){
+        super(board, rule); 
+        
     }
     @Override
-    protected CheckResult check(){
-    
+    protected void check(){
+        ArrayList<String> error = rule.check(board);
+        super.error = error;
     }
   
 }
-}
+

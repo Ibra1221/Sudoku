@@ -7,8 +7,8 @@ package Validation.checkers;
 import Board.SudokuBoard;
 import Validation.CheckResult;
 import Validation.factory.RuleMaker;
+import Validation.rules.ValidationRule;
 import Validation.workers.SudokuWorker;
-import Validation.workers.WorkerType;
 import java.util.ArrayList;
 
 /**
@@ -21,23 +21,48 @@ public class TwentySevenThreadsChecker implements SudokuChecker {
     
     public TwentySevenThreadsChecker(RuleMaker maker){
         this.maker = maker;
+        workers = new ArrayList<SudokuWorker>();
     }
     
     @Override 
     public CheckResult validate(SudokuBoard board){
+        workers.clear();
         for(int i = 0; i<9; i++){
-           workers.add(new SudokuWorker(i, board, WorkerType.ROW_ONE));
-           
-        }
-        
-        for(int i = 9; i<18; i++){
-           workers.add(new SudokuWorker(i, board, WorkerType.COLUMN_ONE));
-           
+            ValidationRule rule = maker.makeSingleBoxRule(i);
+           workers.add(new SudokuWorker(board,rule));
         }
         
         for(int i = 0; i<9; i++){
-           workers.add(new SudokuWorker(i, board, WorkerType.BOX_ONE));
-           
+          ValidationRule rule = maker.makeSingleColumnRule(i);
+           workers.add(new SudokuWorker(board,rule));
+        }
+        
+        for(int i = 0; i<9; i++){
+           ValidationRule rule = maker.makeSingleRowRule(i);
+           workers.add(new SudokuWorker(board,rule));
+        }
+        
+        for(int i = 0; i < workers.size(); i++){
+            workers.get(i).start();
+        }
+        for(int i = 0; i < workers.size(); i++){
+            try {
+                workers.get(i).join();
+            }
+            catch (InterruptedException e){
+                System.out.println("An interrupted exception has occurred");
+                return CheckResult.failure(new ArrayList<>());
+            }
+        }
+        ArrayList<String> allErrors = new ArrayList<>();
+        
+        for(SudokuWorker worker : workers){
+            allErrors.addAll(worker.getError());
+        }
+        if (allErrors.isEmpty()) {
+            return CheckResult.success();
+        } else {
+            return CheckResult.failure(allErrors);
         }
     }
 }
