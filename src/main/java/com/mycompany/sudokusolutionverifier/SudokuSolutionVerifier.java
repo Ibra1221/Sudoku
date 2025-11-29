@@ -28,5 +28,13 @@ public class SudokuSolutionVerifier {
         System.out.println(result2);
         long endTime2 = System.currentTimeMillis();
         System.out.println("Time difference in mode 0:" + (endTime2 - startTime2));
+        int mode3 = 3;
+        long startTime3 = System.currentTimeMillis();
+        CheckService checkService3 = new CheckService(csvFilePath, mode3);
+        String result3 = checkService3.getValidationReport();
+        System.out.println(result3);
+        long endTime3 = System.currentTimeMillis();
+        System.out.println("Time difference in mode 3:" + (endTime3 - startTime3));
+
     }
 }

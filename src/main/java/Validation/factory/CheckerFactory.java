@@ -4,6 +4,7 @@
  */
 package Validation.factory;
 
+import Validation.checkers.Mode3;
 import Validation.checkers.SudokuChecker;
 import Validation.checkers.SequentialChecker;
 import Validation.checkers.TwentySevenThreadsChecker;
@@ -19,7 +20,10 @@ public class CheckerFactory {
         switch (mode) {
             case 0:
                 return new SequentialChecker(maker);
-//            case 3:
+
+            case 3:
+                return new Mode3(maker);
+
             case 27:
                 return new TwentySevenThreadsChecker(maker);
             default:
