@@ -23,7 +23,7 @@ public class Mode3 implements SudokuChecker {
    public CheckResult validate(SudokuBoard board){
        SudokuWorker rowWorker = new SudokuWorker(board,maker.makeRowRule());
        SudokuWorker colWorker = new SudokuWorker(board,maker.makeColumnRule());
-       SudokuWorker boxWorker = new SudokuWorker(board,maker.makeRowRule());
+       SudokuWorker boxWorker = new SudokuWorker(board,maker.makeBoxRule());
        rowWorker.start();
        colWorker.start();
        boxWorker.start();
